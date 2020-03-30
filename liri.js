@@ -3,8 +3,7 @@ require("dotenv").config();
 var fs = require("fs");
 var keys = require("./keys.js");
 var Spotify = require('node-spotify-api');
-var Bandsintown = require('bandsintown')(APP_ID);
-var bandsintown = new Bandsintown(keys.bandsintown);
+var bandsintown = require('bandsintown')(keys.bandsintown);
 var spotify = new Spotify(keys.spotify);
 
 
@@ -28,13 +27,20 @@ function UserInput (option, input) {
             showSomething(input);
             break;
         default:
-            console.log("Invalid option." + "\nOption List: " + "\n'concert-this" + "\n'spotify-this-song" + "\n'movie-this" + "\n'do-what-it-says");
+            console.log("Invalid option." + "\nOption List: " + "\nconcert-this" + "\nspotify-this-song" + "\nmovie-this" + "\ndo-what-it-says");
     };
 };
 
 
 function showConcert(input) {
-    bandsintown.getArtistEventList(input).then(function(events) {
-        
+    bandsintown.getArtistEventList(input).then(function(error, events) {
+        if (!error) {
+            var concerts = JSON.parse(events);
+            for (var i = 0; i < concerts.length; i++) {
+                console.log("Name of the venue : " + concerts[i].venue.name);
+                console.log("Venue location : " + concerts[i].venue.city + concerts[i].venue.region + concerts[i].venue.country);
+                console.log("Date of the event : " + moment(concerts[i].venue.datatime)).format('L');
+            }
+        }
     });
 }

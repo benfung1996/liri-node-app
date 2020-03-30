@@ -6,5 +6,5 @@ exports.spotify = {
 };
 
 exports.bandsintown = {
-
+  appId: process.env.BANDSINTOWN_ID
 };
