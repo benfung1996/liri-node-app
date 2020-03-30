@@ -1,7 +1,12 @@
 require("dotenv").config();
 
+var fs = require("fs");
 var keys = require("./keys.js");
+var Spotify = require('node-spotify-api');
+var Bandsintown = require('bandsintown')(APP_ID);
+var bandsintown = new Bandsintown(keys.bandsintown);
 var spotify = new Spotify(keys.spotify);
+
 
 var option = process.argv[2];
 var input = process.argv[3];
@@ -27,3 +32,9 @@ function UserInput (option, input) {
     };
 };
 
+
+function showConcert(input) {
+    bandsintown.getArtistEventList(input).then(function(events) {
+        
+    });
+}

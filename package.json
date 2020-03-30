@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/benfung1996/liri-node-app#readme",
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.19.2",
+    "bandsintown": "^1.0.1"
   }
 }
