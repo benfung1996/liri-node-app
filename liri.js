@@ -28,7 +28,8 @@ function UserInput (option, input) {
             showSomething(input);
             break;
         default:
-            console.log("Invalid option." + "\nOption List: " + "\nconcert-this" + "\nspotify-this-song" + "\nmovie-this" + "\ndo-what-it-says");
+            console.log("Invalid option." + "\nOption List: " + "\nconcert-this" + "\nspotify-this-song"
+             + "\nmovie-this" + "\ndo-what-it-says");
     };
 };
 
@@ -38,7 +39,8 @@ function UserInput (option, input) {
             for (var i = 0; i < response.data.length; i++) {
                 console.log("----------------------------------------------------------");
                 console.log("Name of the venue : " + response.data[i].venue.name);
-                console.log("Venue location : " + response.data[i].venue.city + response.data[i].venue.region + response.data[i].venue.country);
+                console.log("Venue location : " + response.data[i].venue.city + response.data[i].venue.region 
+                + response.data[i].venue.country);
                 console.log("Date of the event : " + moment(response.data[i].datetime).calendar());
                 console.log("----------------------------------------------------------");
             }
@@ -64,3 +66,29 @@ function UserInput (option, input) {
           
           })
     }
+
+    function showSpotify(input) {
+        if (input === undefined) {
+            input = "The Sign";
+        }
+
+        spotify.search(
+            {
+            type: "track",
+            query: input
+        },
+        function(err, data) {
+            if (err) {
+                return console.log("Error occurred: " + err);
+            };
+            for (var i = 0; i < data.tracks.items.length; i++) {
+                console.log("----------------------------------------------------------");
+                console.log("Artist: " + data.tracks.items[i].artists[0].name);
+                console.log("Song: " + data.tracks.items[i].name);
+                console.log("Preview URL: " + data.tracks.items[i].preview_url);
+                console.log("Album: " + data.tracks.items[i].album.name);
+                console.log("----------------------------------------------------------");
+            };
+     
+        });
+    };
