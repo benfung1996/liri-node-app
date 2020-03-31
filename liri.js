@@ -138,3 +138,13 @@ function UserInput (option, input) {
           });
         
     }
+
+    function showSomething(input) {
+        fs.readFile("random.txt", "utf8", function(error,data) {
+            if (error) {
+                return console.log(error);
+            }
+            var dataArr = data.split(",");
+            UserInput(dataArr[0],dataArr[1]);
+        })
+    }
