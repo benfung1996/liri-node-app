@@ -9,7 +9,8 @@
   2) npm install --save node-spotify-api
   3) npm install moment --save
   4) npm install dotenv
-  * Make sure to register spotify ID and Secret. Then Create a ".env" file and put API keys in there.
+  * Make sure to register spotify ID and Secret. 
+  Then create a ".env" file and put API keys in there.
   
 4. a) node liri.js concert-this "artist or band name here"
       Will show the following details:      
