@@ -13,6 +13,9 @@ var input = process.argv[3];
 
 UserInput(option, input);
 
+var log = [option, input]
+fs.appendFileSync("log.txt", log + '\n');
+
 function UserInput (option, input) {
     switch (option) {
         case 'concert-this':
@@ -148,3 +151,5 @@ function UserInput (option, input) {
             UserInput(dataArr[0],dataArr[1]);
         })
     }
+
+    
